@@ -7,11 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speedMultiplier = 1;
 
     private bool _isFacingRight = true;
-    
+    private Rigidbody2D _rigidBody;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 _movementVector = new Vector3(_xInput, _yInput, 0f) * _speedMultiplier;
 
-        transform.Translate(_movementVector * Time.deltaTime);
+        _rigidBody.AddForce(_movementVector);
 
     }
 
