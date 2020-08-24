@@ -23,6 +23,8 @@ public class PlayerEnergyControl : MonoBehaviour
     private float _currentHealth = 9;
     private float _currentEnergy = 9;
 
+    public static bool playerIsDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +65,7 @@ public class PlayerEnergyControl : MonoBehaviour
             if (_currentHealth < 0)
             {
                 _currentHealth = 0;
+                Die();
             }
         }
     }
@@ -98,7 +101,19 @@ public class PlayerEnergyControl : MonoBehaviour
         }
     }
 
-    
 
+    void Die()
+    {
+        Debug.Log("The Player Died");
+        GetComponent<PlayerMovement>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
+        playerIsDead = true;
+        GameManager.Instance.GameEnd();
+    }
+
+    public float GetEnergy()
+    {
+        return _currentEnergy;
+    }
 
 }

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public delegate void Activation();
     public static Activation StartTheGame;
 
+    public delegate void End();
+    public static End EndTheGame;
+
 
     private void Awake()
     {
@@ -38,5 +41,10 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         StartTheGame();
+    }
+
+    public void GameEnd()
+    {
+        EndTheGame();
     }
 }

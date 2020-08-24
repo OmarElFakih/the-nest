@@ -18,11 +18,23 @@ public class NestControl : MonoBehaviour
     private bool _hasHatched = false;
     [SerializeField] private bool _isHurting = false;
     [SerializeField] private bool _isFeeding = false;
-    [SerializeField] private bool _isVulnerable = false;
+    [SerializeField] private bool _canHurt = false;
+    public static bool NestIsDead = false;
 
 
     private IEnumerator _hatchRoutine;
     private bool _dyingDelayIsRunning = false;
+
+
+    private void OnEnable()
+    {
+        GameManager.StartTheGame += BeginCountDown;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.StartTheGame -= BeginCountDown;
+    }
 
 
 
@@ -30,7 +42,7 @@ public class NestControl : MonoBehaviour
     void Start()
     {
         _currentHealth = _initialHealth;
-        //BeginCountDown();
+        
     }
 
     // Update is called once per frame
@@ -42,12 +54,32 @@ public class NestControl : MonoBehaviour
     void Die()
     {
         Debug.Log("The Nest Died");
+        GameManager.Instance.GameEnd();
+        NestIsDead = true;
+        var emission = GetComponent<ParticleSystem>().emission;
+        emission.rateOverTime = 0;
+        StartCoroutine(DeathAnimation());
         StopCoroutine(_hatchRoutine);
+        
+
+    }
+
+    IEnumerator DeathAnimation()
+    {
+        Animator _animator = GetComponent<Animator>();
+        _animator.speed = 4;
+        yield return new WaitForSeconds(2);
+        _animator.SetTrigger("Dead");
+
     }
 
     void Hatch()
     {
         _hasHatched = true;
+        GetComponent<Animator>().SetBool("isHurting", false);
+        var emission = GetComponent<ParticleSystem>().emission;
+        emission.rateOverTime = 0;
+        GameManager.Instance.GameEnd();
         Debug.Log("The eggs have hatched");
     }
 
@@ -56,6 +88,7 @@ public class NestControl : MonoBehaviour
         //camera transition
         yield return new WaitForSeconds(_starveDelay);
         _isHurting = true;
+        _canHurt = true;
         yield return new WaitForSeconds(_secondsToHatch);
         Hatch();
     }
@@ -72,7 +105,7 @@ public class NestControl : MonoBehaviour
     void HealthControl()
     {
        
-        if (!_hasHatched && _isHurting && _isVulnerable)
+        if (!_hasHatched && _isHurting && _canHurt && !PlayerEnergyControl.playerIsDead)
         {
             _currentHealth -= _healthLossRate * Time.deltaTime;
             if (_currentHealth <= 0)
@@ -82,7 +115,7 @@ public class NestControl : MonoBehaviour
             }
         }
 
-        else if (!_isHurting && _isFeeding)
+        else if (!_isHurting && _isFeeding && !NestIsDead)
         {
             _currentHealth += _healthIncreaseRate * Time.deltaTime;
             if (_currentHealth > _maxHealth)
@@ -101,7 +134,6 @@ public class NestControl : MonoBehaviour
     {
         _isFeeding = true;
         _isHurting = false;
-        _isVulnerable = false;
 
     }
 
@@ -117,7 +149,8 @@ public class NestControl : MonoBehaviour
     public void BeginCountDown()
     {
         _isHurting = true;
-        _isVulnerable = true;
+        _canHurt = true;
+        GetComponent<Animator>().SetBool("isHurting", true);
         _hatchRoutine = HatchCountDown();
         StartCoroutine(_hatchRoutine);
     }
