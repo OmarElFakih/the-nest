@@ -47,7 +47,7 @@ public class EndGameScreenController : MonoBehaviour
     IEnumerator EndGameRoutine()
     {
         _endScreen.SetActive(true);
-        _endGameText.text = (PlayerEnergyControl.playerIsDead || NestControl.NestIsDead) ? _gameOverMessage : _gameWinMessage;
+        _endGameText.text = (PlayerEnergyControl.PlayerIsDead || NestControl.NestIsDead) ? _gameOverMessage : _gameWinMessage;
         yield return new WaitForSeconds(_fadeInDelay);
         foreach (Animator anim in _animators)
         {

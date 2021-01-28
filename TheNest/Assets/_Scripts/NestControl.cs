@@ -42,6 +42,9 @@ public class NestControl : MonoBehaviour
     void Start()
     {
         _currentHealth = _initialHealth;
+        _isHurting = false;
+        _isFeeding = false;
+        NestIsDead = false;
         
     }
 
@@ -54,8 +57,8 @@ public class NestControl : MonoBehaviour
     void Die()
     {
         Debug.Log("The Nest Died");
-        GameManager.Instance.GameEnd();
         NestIsDead = true;
+        GameManager.Instance.GameEnd();
         var emission = GetComponent<ParticleSystem>().emission;
         emission.rateOverTime = 0;
         StartCoroutine(DeathAnimation());
@@ -80,6 +83,7 @@ public class NestControl : MonoBehaviour
         var emission = GetComponent<ParticleSystem>().emission;
         emission.rateOverTime = 0;
         GameManager.Instance.GameEnd();
+        AudioController.Instance.happy.TransitionTo(1);
         Debug.Log("The eggs have hatched");
     }
 
@@ -105,7 +109,7 @@ public class NestControl : MonoBehaviour
     void HealthControl()
     {
        
-        if (!_hasHatched && _isHurting && _canHurt && !PlayerEnergyControl.playerIsDead)
+        if (!_hasHatched && _isHurting && _canHurt && !PlayerEnergyControl.PlayerIsDead)
         {
             _currentHealth -= _healthLossRate * Time.deltaTime;
             if (_currentHealth <= 0)

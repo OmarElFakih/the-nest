@@ -51,7 +51,7 @@ public class CameraTransitionControl : MonoBehaviour
 
     public void FinalBlend()
     {
-        if (!PlayerEnergyControl.playerIsDead)
+        if (!PlayerEnergyControl.PlayerIsDead)
         {
             _animator.SetTrigger("ToNest");
         }

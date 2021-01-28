@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-6701449688802131895
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Scared
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 9eda23a4ace18454dbf8a26eced1e50b
+  m_Children: []
+  m_Volume: e9e3fff93416a16488c1bb65cd2735fe
+  m_Pitch: ce46963101c4efa45bc362fe7ceea997
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 598958250982082632}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!245 &-2021809172081499713
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Scared
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 19cd186fc0f7ef1478ba1d441e270ad2
+  m_FloatValues:
+    e9e3fff93416a16488c1bb65cd2735fe: -0.002441872
+    68fc478a5a4a1f54f982a48e2ef51b6c: -80
+  m_TransitionOverrides: {}
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AudioMixer
+  m_OutputGroup: {fileID: 0}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: -2021809172081499713}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 18cc229f76c001a4b83b85189697f3c1
+    - d16a92b37c38326409b3d05488a71364
+    - 9eda23a4ace18454dbf8a26eced1e50b
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 18cc229f76c001a4b83b85189697f3c1
+  m_Children:
+  - {fileID: 6750608277470639178}
+  - {fileID: -6701449688802131895}
+  m_Volume: adebe81d88a8c534889d744274a9f7cd
+  m_Pitch: 11a64336f45e0254182380823f688265
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 16d48d1da91cc784c867aaf10073b6fb
+  m_EffectName: Attenuation
+  m_MixLevel: 8b1e55d77ac84f14aac0873d6764884a
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Happy
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 7da2b6a021c96fa43b03fd1b8b6b4a44
+  m_FloatValues:
+    e9e3fff93416a16488c1bb65cd2735fe: -80
+  m_TransitionOverrides: {}
+--- !u!244 &598958250982082632
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: cf7cd5aca6378f7469b6a06773bdeb0a
+  m_EffectName: Attenuation
+  m_MixLevel: 97cb015622fabe74da54d7f3cb6c1ae3
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &5163003667426571353
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 935a10410549afa46bc1ed2e0146c9ac
+  m_EffectName: Attenuation
+  m_MixLevel: 73319dc2b06d148448fcd12c7818faf3
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &6750608277470639178
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Happy
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: d16a92b37c38326409b3d05488a71364
+  m_Children: []
+  m_Volume: 68fc478a5a4a1f54f982a48e2ef51b6c
+  m_Pitch: a4c02f0cc2e00b841971936b8ae00b27
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 5163003667426571353}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0

@@ -18,18 +18,20 @@ public class PlayerEnergyControl : MonoBehaviour
     [SerializeField] private Image _healthBar = null;
     [SerializeField] private Image _energyBar = null;
 
-    private bool _inRangeOfNest = false;
+    [SerializeField] private GameObject _burst = null;
 
     private float _currentHealth = 9;
     private float _currentEnergy = 9;
 
-    public static bool playerIsDead = false;
+    public static bool PlayerIsDead = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _currentHealth = _startingHealth;
         _currentEnergy = _startingEnergy;
+        PlayerIsDead = false;
     }
 
     // Update is called once per frame
@@ -107,7 +109,8 @@ public class PlayerEnergyControl : MonoBehaviour
         Debug.Log("The Player Died");
         GetComponent<PlayerMovement>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(false);
-        playerIsDead = true;
+        Instantiate(_burst, transform.position, Quaternion.identity);
+        PlayerIsDead = true;
         GameManager.Instance.GameEnd();
     }
 
